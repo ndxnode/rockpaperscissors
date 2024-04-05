@@ -16,30 +16,51 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     //player is rock
     if (playerSelection == 'rock' && computerSelection == 'paper') {
-        return "You lose! Paper beats rock";
+        return "You lose the round. Paper beats rock";
     } else if (playerSelection == 'rock' && computerSelection == 'rock') {
-        return "Its a tie! Both players picked rock";
+        return "Its a tie round. Both players picked rock";
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        return "You win! Rock beats scissors";
+        return "You win the round. Rock beats scissors";
     //player is scissors
     } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        return "You win! Scissors beats paper";
+        return "You win the round. Scissors beats paper";
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        return "You lose! Rock beats scissors";
+        return "You lose the round. Rock beats scissors";
     } else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-        return "Its a tie! Both players picked scissors";
+        return "Its a tie round. Both players picked scissors";
     //player is paper
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        return "You lose! Scissors beats paper";
+        return "You lose the round. Scissors beats paper";
     } else if (playerSelection == 'paper' && computerSelection == 'paper') {
-        return "Its a tie! Both players picked paper";
+        return "Its a tie round. Both players picked paper";
     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        return "You win! Paper beats rock";
+        return "You win the round. Paper beats rock";
     }
     return 1;
 }
 
-let playerSelection = 'paper';
-const computerSelection = getComputerChoice();
+function playGame() {
+    //keep track of both scores, 5 rounds, whoever has score 3 wins
+    let playerScore = 0;
+    let computerScore = 0;
+    const  CPU_WINS = "Computer wins the 5 round game!";
+    const PLAYER_WINS = "You wins the 5 round game!";
+    for (let i = 0; i < 5; i++) {
+        let message = playRound(prompt("Pick Rock, Paper, or Scissors"), getComputerChoice());
+        console.log(message);
+        if (message.charAt(4) == 'l') computerScore++;
+        else if (message.charAt(4) == 'w') playerScore++;
 
-console.log(playGame(playerSelection, computerSelection));
+        if (playerScore == 3) console.log(PLAYER_WINS);
+        else if (computerScore == 3) console.log(CPU_WINS);
+    }
+    if (playerScore < 3 && computerScore < 3) {
+        if (computerScore > playerScore) console.log(CPU_WINS);
+        else if (computerScore < playerScore) console.log(PLAYER_WINS);
+        else console.log("Its a tie");
+    }
+    console.log(`Computer's score: ${computerScore}`);
+    console.log(`Player's score ${playerScore}`);
+}
+
+playGame();
