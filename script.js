@@ -12,7 +12,7 @@ function getComputerChoice() {
     }
 }
 
-function playGame(playerSelection, computerSelection) { 
+function playRound(playerSelection, computerSelection) { 
     playerSelection = playerSelection.toLowerCase();
     //player is rock
     if (playerSelection == 'rock' && computerSelection == 'paper') {
